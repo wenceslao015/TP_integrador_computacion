@@ -8,7 +8,7 @@ on:
 # Qué tareas va a hacer
 jobs:
   ejecutar-tests:
-    runs-on: ubuntu-latest  # Corre en una máquina virtual Linux en la nube
+    runs-on ubuntu-latest  # <-- Le borramos los dos puntos ':' acá para romper el YAML
 
     steps:
     # Paso A: Clonar tu código en el servidor de GitHub
