@@ -1,0 +1,32 @@
+name: Pipeline de Integracion Continua
+
+# Cuándo se ejecuta
+on:
+  pull_request:
+    branches: [ main ]  # Se dispara al abrir o actualizar un PR hacia main
+
+# Qué tareas va a hacer
+jobs:
+  ejecutar-tests:
+    runs-on: ubuntu-latest  # Corre en una máquina virtual Linux en la nube
+
+    steps:
+    # Paso A: Clonar tu código en el servidor de GitHub
+    - name: Descargar codigo fuente
+      uses: actions/checkout@v4
+
+    # Paso B: Configurar Python
+    - name: Instalar Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # Paso C: Instalar dependencias si las hubiera (buena práctica)
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        if [ -s requirements.txt ]; then pip install -r requirements.txt; fi
+
+    # Paso D: Ejecutar tus 6 tests unitarios nativos
+    - name: Correr Unit Tests
+      run: python -m unittest test_main.py
