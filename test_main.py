@@ -9,9 +9,11 @@ from main import (
 class TestSistemaSupermercado(unittest.TestCase):
 
     # --- 1. Test de Validación (Caso TRUE) ---
+   # --- 1. Test de Validación (Caso TRUE) ---
     def test_validar_monto_positivo_exito(self):
         """Verifica que montos mayores a cero sean aceptados."""
-        self.assertTrue(validar_monto_positivo(1500.50))
+        # Cambiamos esto para que falle a propósito (validar un negativo como True va a dar False y rompe el test)
+        self.assertTrue(validar_monto_positivo(-100))
 
     # --- 2. Test de Validación (Caso FALSE) ---
     def test_validar_monto_negativo_error(self):
